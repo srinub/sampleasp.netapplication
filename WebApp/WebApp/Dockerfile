@@ -8,7 +8,7 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime 
 WORKDIR /WebApp
-COPY ["WebApp/WebApp.csproj", "WebApp/"]
+COPY ["/WebApp/WebApp.csproj", "/WebApp/"]
 RUN dotnet restore "WebApp/WebApp.csproj"
 COPY . .
 WORKDIR "/WebApp/WebApp"
