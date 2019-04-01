@@ -2,7 +2,7 @@
 #For more information, please see https://aka.ms/containercompat
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-1803 AS base
-WORKDIR /app
+WORKDIR /WebApp
 EXPOSE 80
 EXPOSE 443
 
