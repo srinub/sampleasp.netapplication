@@ -6,18 +6,18 @@ WORKDIR /WebApp
 EXPOSE 80
 EXPOSE 443
 
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+FROM microsoft/dotnet:2.1-aspnetcore-runtime 
 WORKDIR /WebApp
 COPY ["WebApp/WebApp.csproj", "WebApp/"]
 RUN dotnet restore "WebApp/WebApp.csproj"
 COPY . .
-WORKDIR "/WebApp"
-RUN dotnet build "WebApp.csproj" -c Release -o /WebApp
+WORKDIR "/WebApp/WebApp"
+RUN dotnet build "WebApp.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "WebApp.csproj" -c Release -o /WebApp
+RUN dotnet publish "WebApp.csproj" -c Release -o /app
 
 FROM base AS final
-WORKDIR /WebApp
-COPY --from=publish /WebApp .
+WORKDIR /app
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "WebApp.dll"]
